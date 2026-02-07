@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Relatórios — AgendAqui PRO</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .rel-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .chart-box {
+      height: 260px;
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .bar {
+      flex: 1;
+      background: rgba(37, 99, 235, 0.2);
+      border-radius: 8px 8px 0 0;
+      transition: height .8s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>Relatórios</h1>
+    <p class="text-secondary">Indicadores e desempenho (dados fictícios)</p>
+
+    <div class="cards" style="margin-top:20px;">
+      <div class="card">
+        <h3>Agendamentos no mês</h3>
+        <p style="font-size:22px; margin-top:6px;">1.260</p>
+      </div>
+
+      <div class="card">
+        <h3>Confirmados</h3>
+        <p style="font-size:22px; margin-top:6px;">1.159</p>
+      </div>
+
+      <div class="card">
+        <h3>Faltas</h3>
+        <p style="font-size:22px; margin-top:6px;">101</p>
+      </div>
+
+      <div class="card">
+        <h3>Taxa de confirmação</h3>
+        <p style="font-size:22px; margin-top:6px;">92%</p>
+      </div>
+    </div>
+
+    <div class="rel-grid">
+
+      <!-- Gráfico de crescimento -->
+      <div class="panel">
+        <h3>Crescimento de Agendamentos (4 semanas)</h3>
+
+        <div class="chart-box" id="chart" style="margin-top:20px;">
+          <div class="bar" data-value="80"></div>
+          <div class="bar" data-value="95"></div>
+          <div class="bar" data-value="110"></div>
+          <div class="bar" data-value="130"></div>
+        </div>
+
+        <p class="text-secondary" style="margin-top:10px;">
+          Semana 1 → Semana 2 → Semana 3 → Semana 4
+        </p>
+      </div>
+
+      <!-- Indicadores laterais -->
+      <div class="panel">
+        <h3>Indicadores-chave</h3>
+        <ul style="list-style:none; padding:0; margin-top:12px;">
+          <li class="list-item">
+            <span>Taxa de faltas</span>
+            <span class="badge" style="background:rgba(239,68,68,.15); color:var(--danger);">8%</span>
+          </li>
+          <li class="list-item">
+            <span>Tempo médio de confirmação</span>
+            <span class="badge">3 min</span>
+          </li>
+          <li class="list-item">
+            <span>Lembretes enviados</span>
+            <span class="badge">1.120</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // animação simples do gráfico
+    document.querySelectorAll('#chart .bar').forEach(bar => {
+      const value = bar.getAttribute('data-value');
+      const max = 130;
+      const height = (value / max) * 220;
+      setTimeout(() => {
+        bar.style.height = height + "px";
+      }, 300);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Agenda — AgendAqui PRO</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+<aside class="sidebar">
+  <h2>AgendAqui PRO</h2>
+  <ul class="menu">
+    <li><a href="painel.html">📊 Painel</a></li>
+    <li><a href="agenda.html">📅 Agenda</a></li>
+    <li><a href="clientes.html">👥 Clientes</a></li>
+    <li><a href="relatorios.html">📈 Relatórios</a></li>
+  </ul>
+</aside>
+
+<main class="main">
+<h1>Agenda Semanal</h1>
+<p class="text-secondary">Agendamentos salvos e integrados com clientes</p>
+
+<button onclick="abrirModal()" style="margin-bottom:16px;">
+  + Novo Agendamento
+</button>
+
+<div class="agenda-grid" style="margin-top:10px;" id="agendaGrid">
+
+  <div class="day" data-dia="Segunda"><h3>Segunda</h3></div>
+  <div class="day" data-dia="Terça"><h3>Terça</h3></div>
+  <div class="day" data-dia="Quarta"><h3>Quarta</h3></div>
+  <div class="day" data-dia="Quinta"><h3>Quinta</h3></div>
+  <div class="day" data-dia="Sexta"><h3>Sexta</h3></div>
+
+</div>
+
+<!-- ====== MODAL DE AGENDAMENTO ====== -->
+<div id="modal" style="
+display:none;
+position:fixed;
+top:0; left:0;
+width:100%; height:100%;
+background:rgba(0,0,0,.6);
+align-items:center;
+justify-content:center;
+">
+
+  <div class="panel" style="width:320px;">
+    <h3>Novo Agendamento</h3>
+
+    <label>Dia</label>
+    <select id="diaSelect" style="width:100%; margin-bottom:10px;">
+      <option>Segunda</option>
+      <option>Terça</option>
+      <option>Quarta</option>
+      <option>Quinta</option>
+      <option>Sexta</option>
+    </select>
+
+    <label>Horário</label>
+    <input id="horaInput" type="text" placeholder="09:00" style="width:100%; margin-bottom:10px;">
+
+    <label>Cliente</label>
+    <select id="clienteSelect" style="width:100%; margin-bottom:10px;"></select>
+
+    <div style="display:flex; gap:10px; margin-top:10px;">
+      <button onclick="salvarAgendamento()">Salvar</button>
+      <button onclick="fecharModal()" style="background:#ef4444;">Cancelar</button>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<script>
+// ====== CARREGA CLIENTES (MESMO BANCO DA TELA DE CLIENTES) ======
+function carregarClientesAgenda() {
+  const clientes = JSON.parse(localStorage.getItem("clientes")) || [];
+  const select = document.getElementById("clienteSelect");
+  select.innerHTML = "";
+
+  clientes.forEach(c => {
+    const opt = document.createElement("option");
+    opt.value = c.nome;
+    opt.innerText = c.nome;
+    select.appendChild(opt);
+  });
+}
+
+// ====== BANCO DE AGENDAMENTOS ======
+let agendamentos = JSON.parse(localStorage.getItem("agendamentos")) || [];
+
+// ====== ABRIR / FECHAR MODAL ======
+function abrirModal() {
+  carregarClientesAgenda();
+  document.getElementById("modal").style.display = "flex";
+}
+
+function fecharModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+// ====== RENDERIZAR AGENDA (DESENHAR NA TELA) ======
+function renderAgenda() {
+  document.querySelectorAll(".day").forEach(coluna => {
+    // limpa eventos antigos (mantendo só o título)
+    coluna.querySelectorAll(".event").forEach(e => e.remove());
+  });
+
+  agendamentos.forEach((ag, index) => {
+    const coluna = document.querySelector(`.day[data-dia='${ag.dia}']`);
+    if (!coluna) return;
+
+    const div = document.createElement("div");
+    div.className = "event";
+    div.innerText = `${ag.hora} — ${ag.cliente}`;
+
+    // botão pequeno de excluir
+    const btn = document.createElement("button");
+    btn.innerText = "×";
+    btn.style.marginLeft = "8px";
+    btn.style.background = "#ef4444";
+    btn.onclick = () => removerAgendamento(index);
+
+    div.appendChild(btn);
+    coluna.appendChild(div);
+  });
+}
+
+// ====== SALVAR NOVO AGENDAMENTO ======
+function salvarAgendamento() {
+  const dia = document.getElementById("diaSelect").value;
+  const hora = document.getElementById("horaInput").value;
+  const cliente = document.getElementById("clienteSelect").value;
+
+  if (!hora) {
+    alert("Digite o horário!");
+    return;
+  }
+
+  const novo = { dia, hora, cliente };
+  agendamentos.push(novo);
+
+  localStorage.setItem("agendamentos", JSON.stringify(agendamentos));
+
+  fecharModal();
+  renderAgenda();
+}
+
+// ====== REMOVER AGENDAMENTO ======
+function removerAgendamento(i) {
+  agendamentos.splice(i, 1);
+  localStorage.setItem("agendamentos", JSON.stringify(agendamentos));
+  renderAgenda();
+}
+
+// Carrega agenda ao abrir a página
+renderAgenda();
+</script>
+
+</body>
+</html>

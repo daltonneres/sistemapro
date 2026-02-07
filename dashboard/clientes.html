@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Clientes — AgendAqui PRO</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+<aside class="sidebar">
+  <h2>AgendAqui PRO</h2>
+  <ul class="menu">
+    <li><a href="painel.html">📊 Painel</a></li>
+    <li><a href="agenda.html">📅 Agenda</a></li>
+    <li><a href="clientes.html">👥 Clientes</a></li>
+    <li><a href="relatorios.html">📈 Relatórios</a></li>
+  </ul>
+</aside>
+
+<main class="main">
+<h1>Clientes</h1>
+<p class="text-secondary">Cadastro integrado com a Agenda</p>
+
+<div class="panel" style="margin-top:20px;">
+  <h3>Cadastrar Novo Cliente</h3>
+
+  <input id="nomeCliente" type="text" placeholder="Nome completo" style="width:100%; margin-bottom:10px;">
+  <input id="whatsappCliente" type="text" placeholder="WhatsApp" style="width:100%; margin-bottom:10px;">
+
+  <button onclick="salvarCliente()">Salvar Cliente</button>
+
+  <p id="msg" style="margin-top:10px; display:none; color:#86efac;">
+    Cliente cadastrado com sucesso!
+  </p>
+</div>
+
+<div class="panel" style="margin-top:20px;">
+<h3>Lista de Clientes</h3>
+
+<table class="table">
+<thead>
+<tr>
+  <th>Nome</th>
+  <th>WhatsApp</th>
+  <th>Status</th>
+  <th>Ação</th>
+</tr>
+</thead>
+<tbody id="tabelaClientes">
+</tbody>
+</table>
+</div>
+
+</main>
+</div>
+
+<script>
+// ====== CARREGAR OU CRIAR BANCO DE CLIENTES ======
+let clientes = JSON.parse(localStorage.getItem("clientes")) || [
+  { id: 1, nome: "Ana Paula", whatsapp: "(46) 99999-1234", status: "Ativo" },
+  { id: 2, nome: "Bruno Silva", whatsapp: "(46) 98888-5678", status: "Ativo" }
+];
+
+// Salva no localStorage sempre que mudar
+function salvarNoBanco() {
+  localStorage.setItem("clientes", JSON.stringify(clientes));
+}
+
+// ====== RENDERIZAR TABELA ======
+function renderTabela() {
+  const tbody = document.getElementById("tabelaClientes");
+  tbody.innerHTML = "";
+
+  clientes.forEach(cliente => {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td>${cliente.nome}</td>
+      <td>${cliente.whatsapp}</td>
+      <td>${cliente.status}</td>
+      <td>
+        <button onclick="removerCliente(${cliente.id})" style="background:#ef4444;">
+          Excluir
+        </button>
+      </td>
+    `;
+
+    tbody.appendChild(tr);
+  });
+}
+
+// ====== SALVAR CLIENTE ======
+function salvarCliente() {
+  const nome = document.getElementById("nomeCliente").value;
+  const whatsapp = document.getElementById("whatsappCliente").value;
+
+  if (!nome || !whatsapp) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  const novoCliente = {
+    id: Date.now(),
+    nome,
+    whatsapp,
+    status: "Ativo"
+  };
+
+  clientes.push(novoCliente);
+  salvarNoBanco();
+
+  document.getElementById("nomeCliente").value = "";
+  document.getElementById("whatsappCliente").value = "";
+
+  document.getElementById("msg").style.display = "block";
+  setTimeout(() => document.getElementById("msg").style.display = "none", 2000);
+
+  renderTabela();
+}
+
+// ====== REMOVER CLIENTE ======
+function removerCliente(id) {
+  clientes = clientes.filter(c => c.id !== id);
+  salvarNoBanco();
+  renderTabela();
+}
+
+// Carrega tabela ao abrir página
+renderTabela();
+</script>
+
+</body>
+</html>

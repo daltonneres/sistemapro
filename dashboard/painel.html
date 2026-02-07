@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Painel — AgendAqui PRO</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+  <aside class="sidebar">
+    <h2>AgendAqui PRO</h2>
+    <ul class="menu">
+      <li><a href="painel.html">📊 Painel</a></li>
+      <li><a href="agenda.html">📅 Agenda</a></li>
+      <li><a href="clientes.html">👥 Clientes</a></li>
+      <li><a href="relatorios.html">📈 Relatórios</a></li>
+      <li><a href="../login.html">🚪 Sair</a></li>
+    </ul>
+  </aside>
+
+  <main class="main">
+    <h1>Painel Administrativo</h1>
+    <p class="text-secondary">Visão geral do sistema</p>
+
+    <div class="dashboard-grid" style="margin-top:20px;">
+      <div class="panel">
+        <h3>Clientes Ativos</h3>
+        <p style="font-size:22px;">342</p>
+      </div>
+
+      <div class="panel">
+        <h3>Agendamentos/Mês</h3>
+        <p style="font-size:22px;">1.260</p>
+      </div>
+
+      <div class="panel">
+        <h3>Confirmados</h3>
+        <p style="font-size:22px;">92%</p>
+      </div>
+
+      <div class="panel">
+        <h3>Faltas</h3>
+        <p style="font-size:22px; color:#f87171;">8%</p>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:20px;">
+      <h3>Próximos Atendimentos</h3>
+      <table class="table">
+        <tr>
+          <th>Data</th>
+          <th>Hora</th>
+          <th>Cliente</th>
+          <th>Serviço</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td>07/02</td>
+          <td>09:00</td>
+          <td>Ana Paula</td>
+          <td>Consulta</td>
+          <td>Confirmado</td>
+        </tr>
+        <tr>
+          <td>07/02</td>
+          <td>10:30</td>
+          <td>Bruno Silva</td>
+          <td>Revisão</td>
+          <td>Pendente</td>
+        </tr>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// Atualiza métricas dinamicamente (simulação)
+document.addEventListener("DOMContentLoaded", () => {
+  setInterval(() => {
+    document.querySelectorAll(".panel p")[0].innerText =
+      340 + Math.floor(Math.random() * 5);
+
+    document.querySelectorAll(".panel p")[1].innerText =
+      1250 + Math.floor(Math.random() * 20);
+  }, 3000);
+});
+</script>
+
+</body>
+</html>

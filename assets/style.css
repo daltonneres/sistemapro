@@ -1,0 +1,248 @@
+/* ===== RESET E BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+:root {
+  --bg-main: #0b1220;
+  --bg-card: #111827;
+  --bg-panel: #020617;
+  --border: #1f2933;
+  --text-primary: #e5e7eb;
+  --text-secondary: #9ca3af;
+  --accent: #2563eb;
+  --success: #22c55e;
+  --warning: #eab308;
+  --danger: #ef4444;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-primary);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  font-weight: 600;
+}
+
+/* ===== CARDS (PADRÃO CORPORATIVO) ===== */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+/* ===== TABELA CORPORATIVA ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px 10px;
+  text-align: left;
+}
+
+th {
+  background: var(--bg-panel);
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+tr {
+  border-bottom: 1px solid var(--border);
+}
+
+tr:last-child {
+  border-bottom: none;
+}
+
+/* ===== AGENDA CORPORATIVA ===== */
+.agenda-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.dia-agenda {
+  min-height: 140px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+}
+
+.dia-agenda::before {
+  content: attr(data-data);
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.evento {
+  background: rgba(37, 99, 235, 0.15);
+  border-left: 3px solid var(--accent);
+  padding: 6px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* ===== BOTÕES ===== */
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  opacity: .9;
+}
+
+/* ===== LOGIN BOX ===== */
+#login-box {
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-primary);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* ===== UTILITÁRIOS ===== */
+.text-secondary { color: var(--text-secondary); }
+.bg-panel { background: var(--bg-panel); }
+
+/* ====== LAYOUT DE SISTEMA ====== */
+.app-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+
+/* SIDEBAR (MENU LATERAL) */
+.sidebar {
+  background: #0f1115;
+  border-right: 1px solid var(--border);
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 20px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  margin-bottom: 10px;
+}
+
+.menu a {
+  display: block;
+  padding: 10px;
+  border-radius: 8px;
+  color: #e5e7eb;
+  text-decoration: none;
+}
+
+.menu a:hover {
+  background: rgba(37, 99, 235, 0.15);
+}
+
+/* CONTEÚDO PRINCIPAL */
+.main {
+  padding: 24px;
+}
+
+/* GRID DO DASHBOARD */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* PAINÉIS */
+.panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+/* TABELA ESTILO PLANILHA */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.table th, .table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.table th {
+  text-align: left;
+  background: rgba(255,255,255,.03);
+}
+
+/* AGENDA SEMANAL */
+.agenda-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.day {
+  background: var(--bg-card);
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.event {
+  background: rgba(37, 99, 235, 0.15);
+  padding: 8px;
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  margin-top: 8px;
+}
