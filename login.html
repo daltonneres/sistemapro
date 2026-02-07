@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login — AgendAqui PRO</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      padding: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-wrapper">
+    <div class="card login-card" id="login-box">
+      <h2 style="text-align:center; margin-bottom:16px;">Acesso ao Sistema</h2>
+
+      <label>Email</label>
+      <input type="email" placeholder="admin@agendaqui.com" style="margin-bottom:10px;">
+
+      <label>Senha</label>
+      <input type="password" placeholder="••••••••" style="margin-bottom:16px;">
+
+      <button style="width:100%;" onclick="fakeLogin()">Entrar</button>
+
+      <p class="text-secondary" style="text-align:center; margin-top:12px; font-size:12px;">
+        Demonstração — qualquer credencial funciona.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function fakeLogin() {
+      window.location.href = "dashboard/painel.html";
+    }
+  </script>
+
+</body>
+</html>

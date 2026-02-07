@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>AgendAqui PRO — Sistema Corporativo</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+      min-height: 80vh;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      margin-bottom: 16px;
+    }
+
+    .mock-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 0 40px rgba(0,0,0,.4);
+    }
+
+    .features {
+      margin: 80px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .cta-area {
+      text-align: center;
+      margin: 80px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <section class="hero">
+      <div>
+        <h1>AgendAqui PRO</h1>
+        <p class="text-secondary">
+          Sistema corporativo de gestão de agendamentos com painel administrativo,
+          agenda visual, relatórios e automação de WhatsApp — tudo em ambiente de demonstração.
+        </p>
+        <div style="margin-top:20px;">
+          <button onclick="window.location.href='login.html'">Acessar Demonstração</button>
+        </div>
+      </div>
+
+      <div class="mock-panel">
+        <h3>Painel Simulado</h3>
+        <p class="text-secondary" style="margin-top:8px;">
+          Clientes ativos • Agenda • Relatórios • Notificações
+        </p>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="card">
+        <h3>Agenda Visual</h3>
+        <p class="text-secondary">Calendário semanal com horários e eventos.</p>
+      </div>
+
+      <div class="card">
+        <h3>Dashboard Corporativo</h3>
+        <p class="text-secondary">Indicadores claros e objetivos.</p>
+      </div>
+
+      <div class="card">
+        <h3>Automação WhatsApp</h3>
+        <p class="text-secondary">Confirmações e lembretes automáticos.</p>
+      </div>
+
+      <div class="card">
+        <h3>Relatórios</h3>
+        <p class="text-secondary">Dados organizados para tomada de decisão.</p>
+      </div>
+    </section>
+
+    <div class="cta-area">
+      <h2>Pronto para explorar o sistema?</h2>
+      <p class="text-secondary" style="margin:10px 0 20px;">
+        Esta é uma demonstração com dados fictícios.
+      </p>
+      <button onclick="window.location.href='login.html'">Entrar no Painel</button>
+    </div>
+
+  </div>
+
+</body>
+</html>
